@@ -1,0 +1,1068 @@
+// ---------- Netronomia Score v4 ---------- //
+//// -------- Guqin ---------------------- ////
+
+//////// Global Variables ////////
+
+// Define color themes for each player
+let player1Theme = {
+  localNodeColor: '#783630',  // Green background
+  localBeat: '#FF5B4A',       // Green beat
+  n2Color: '#305078',         // Blue background
+  n2Beat: '#4A9AFF',          // Blue beat
+  n3Color: '#707e31',         // Red background
+  n3Beat: '#DFFF49'           // Red beat
+};
+let player2Theme = {
+  localNodeColor: '#305078',  // Blue background
+  localBeat: '#4A9AFF',       // Blue beat
+  n2Color: '#707e31',         // Green background
+  n2Beat: '#DFFF49',          // Green beat
+  n3Color: '#783630',         // Red background
+  n3Beat: '#FF5B4A'           // Red beat
+};
+let player3Theme = {
+  localNodeColor: '#783630',  // Red background
+  localBeat: '#FF5B4A',       // Red beat
+  n2Color: '#305078',         // Blue background
+  n2Beat: '#4A9AFF',          // Blue beat
+  n3Color: '#707e31',         // Green background
+  n3Beat: '#DFFF49'           // Green beat
+};
+
+// Set initial theme
+let currentPlayerTheme = player1Theme;
+
+// DEFINE PRESETS FOR THIS PIECE //
+
+let preset1 = {
+  imageFile: 'guqin-1.png',
+// Guqin-1
+localNodeTransparency: [   
+1.0, //1 1
+0.1, //2 &
+0.1, //3 2
+1.0, //4 &
+0.1, //5 3
+0.1, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+0.1, //10 &
+0.1, //11 2
+0.1, //12 &
+0.1, //13 3
+0.1, //14 &
+0.1, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+0.1, //19 2
+1.0, //20 &
+0.1, //21 3
+0.1, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+0.1, //26 &
+0.1, //27 2
+0.1, //28 &
+0.1, //29 3
+0.1, //30 &
+0.1, //31 4
+0.1, //32 &
+],
+
+// Cello-1
+n2Transparency: [   
+1.0, //1 1
+0.1, //2 &
+0.1, //3 2
+1.0, //4 &
+0.1, //5 3
+1.0, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+0.1, //10 &
+1.0, //11 2
+0.1, //12 &
+1.0, //13 3
+0.1, //14 &
+1.0, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+0.1, //19 2
+1.0, //20 &
+0.1, //21 3
+1.0, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+0.1, //26 &
+1.0, //27 2
+0.1, //28 &
+1.0, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+],
+
+// Bass-1
+n3Transparency: [   
+1.0, //1 1
+0.1, //2 &
+0.1, //3 2
+1.0, //4 &
+0.1, //5 3
+1.0, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+0.1, //10 &
+1.0, //11 2
+0.1, //12 &
+1.0, //13 3
+0.1, //14 &
+1.0, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+0.1, //19 2
+1.0, //20 &
+0.1, //21 3
+1.0, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+0.1, //26 &
+1.0, //27 2
+0.1, //28 &
+1.0, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+]
+};
+
+let preset2 = {
+  imageFile: 'guqin-2.png',
+// Guqin-2
+localNodeTransparency: [   
+0.1, //1 1
+0.1, //2 &
+1.0, //3 2
+0.1, //4 &
+1.0, //5 3
+0.1, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+0.1, //10 &
+1.0, //11 2
+0.1, //12 &
+1.0, //13 3
+0.1, //14 &
+0.1, //15 4
+1.0, //16 &
+0.1, //17 1
+0.1, //18 &
+1.0, //19 2
+0.1, //20 &
+1.0, //21 3
+0.1, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+0.1, //26 &
+1.0, //27 2
+0.1, //28 &
+1.0, //29 3
+0.1, //30 &
+0.1, //31 4
+1.0, //32 &
+],
+
+// Cello-2
+n2Transparency: [   
+0.1, //1 1
+1.0, //2 &
+0.1, //3 2
+0.1, //4 &
+1.0, //5 3
+0.1, //6 &
+1.0, //7 4
+0.1, //8 &
+0.1, //9 1
+1.0, //10 &
+0.1, //11 2
+0.1, //12 &
+1.0, //13 3
+0.1, //14 &
+1.0, //15 4
+0.1, //16 &
+0.1, //17 1
+1.0, //18 &
+0.1, //19 2
+0.1, //20 &
+1.0, //21 3
+0.1, //22 &
+1.0, //23 4
+0.1, //24 &
+0.1, //25 1
+1.0, //26 &
+0.1, //27 2
+0.1, //28 &
+1.0, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+],
+
+// Bass-2
+n3Transparency: [   
+1.0, //1 1
+0.1, //2 &
+0.1, //3 2
+1.0, //4 &
+0.1, //5 3
+0.1, //6 &
+1.0, //7 4
+0.1, //8 &
+1.0, //9 1
+0.1, //10 &
+0.1, //11 2
+1.0, //12 &
+0.1, //13 3
+0.1, //14 &
+1.0, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+0.1, //19 2
+1.0, //20 &
+0.1, //21 3
+0.1, //22 &
+1.0, //23 4
+0.1, //24 &
+1.0, //25 1
+0.1, //26 &
+0.1, //27 2
+1.0, //28 &
+0.1, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+]
+};
+
+let preset3 = {
+  imageFile: 'guqin-3.png',
+// Guqin-3
+localNodeTransparency: [   
+1.0, //1 1
+0.1, //2 &
+1.0, //3 2
+0.1, //4 &
+1.0, //5 3
+1.0, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+0.1, //10 &
+0.1, //11 2
+0.1, //12 &
+0.1, //13 3
+0.1, //14 &
+0.1, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+1.0, //19 2
+0.1, //20 &
+1.0, //21 3
+1.0, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+1.0, //26 &
+0.1, //27 2
+0.1, //28 &
+0.1, //29 3
+0.1, //30 &
+0.1, //31 4
+0.1, //32 &
+],
+
+// Cello-3
+n2Transparency: [   
+1.0, //1 1
+0.1, //2 &
+1.0, //3 2
+0.1, //4 &
+1.0, //5 3
+1.0, //6 &
+0.1, //7 4
+1.0, //8 &
+0.1, //9 1
+1.0, //10 &
+0.1, //11 2
+1.0, //12 &
+1.0, //13 3
+0.1, //14 &
+1.0, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+1.0, //19 2
+0.1, //20 &
+1.0, //21 3
+1.0, //22 &
+0.1, //23 4
+1.0, //24 &
+0.1, //25 1
+1.0, //26 &
+0.1, //27 2
+1.0, //28 &
+1.0, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+],
+
+// Bass-3
+n3Transparency: [   
+1.0, //1 1
+0.1, //2 &
+1.0, //3 2
+1.0, //4 &
+0.1, //5 3
+0.1, //6 &
+0.1, //7 4
+0.1, //8 &
+0.1, //9 1
+0.1, //10 &
+0.1, //11 2
+0.1, //12 &
+0.1, //13 3
+1.0, //14 &
+1.0, //15 4
+0.1, //16 &
+1.0, //17 1
+0.1, //18 &
+1.0, //19 2
+1.0, //20 &
+0.1, //21 3
+0.1, //22 &
+0.1, //23 4
+0.1, //24 &
+0.1, //25 1
+0.1, //26 &
+0.1, //27 2
+0.1, //28 &
+0.1, //29 3
+0.1, //30 &
+1.0, //31 4
+0.1, //32 &
+]
+};
+
+let preset0 = {
+  imageFile: 'default-1.png',
+  localNodeTransparency: [   
+																0.1, //1 1
+																0.1, //2 &
+																0.1, //3 2
+																0.1, //4 &
+																0.1, //5 3
+																0.1, //6 &
+																0.1, //7 4
+																0.1, //8 &
+																0.1, //9 1
+																0.1, //10 &
+																0.1, //11 2
+																0.1, //12 &
+																0.1, //13 3
+																0.1, //14 &
+																0.1, //15 4
+																0.1, //16 &
+																0.1, //17 1
+																0.1, //18 &
+																0.1, //19 2
+																0.1, //20 &
+																0.1, //21 3
+																0.1, //22 &
+																0.1, //23 4
+																0.1, //24 &
+																0.1, //25 1
+																0.1, //26 &
+																0.1, //27 2
+																0.1, //28 &
+																0.1, //29 3
+																0.1, //30 &
+																0.1, //31 4
+																0.1, //32 &
+																],
+  n2Transparency: [   
+																0.1, //1 1
+																0.1, //2 &
+																0.1, //3 2
+																0.1, //4 &
+																0.1, //5 3
+																0.1, //6 &
+																0.1, //7 4
+																0.1, //8 &
+																0.1, //9 1
+																0.1, //10 &
+																0.1, //11 2
+																0.1, //12 &
+																0.1, //13 3
+																0.1, //14 &
+																0.1, //15 4
+																0.1, //16 &
+																0.1, //17 1
+																0.1, //18 &
+																0.1, //19 2
+																0.1, //20 &
+																0.1, //21 3
+																0.1, //22 &
+																0.1, //23 4
+																0.1, //24 &
+																0.1, //25 1
+																0.1, //26 &
+																0.1, //27 2
+																0.1, //28 &
+																0.1, //29 3
+																0.1, //30 &
+																0.1, //31 4
+																0.1, //32 &
+																],
+  n3Transparency: [   
+																0.1, //1 1
+																0.1, //2 &
+																0.1, //3 2
+																0.1, //4 &
+																0.1, //5 3
+																0.1, //6 &
+																0.1, //7 4
+																0.1, //8 &
+																0.1, //9 1
+																0.1, //10 &
+																0.1, //11 2
+																0.1, //12 &
+																0.1, //13 3
+																0.1, //14 &
+																0.1, //15 4
+																0.1, //16 &
+																0.1, //17 1
+																0.1, //18 &
+																0.1, //19 2
+																0.1, //20 &
+																0.1, //21 3
+																0.1, //22 &
+																0.1, //23 4
+																0.1, //24 &
+																0.1, //25 1
+																0.1, //26 &
+																0.1, //27 2
+																0.1, //28 &
+																0.1, //29 3
+																0.1, //30 &
+																0.1, //31 4
+																0.1, //32 &
+																]
+};
+
+let currentPreset; // Variable to store the current preset
+
+// Define an array of unique text values for the outer ring
+let outerRingTextArray = ["1", 
+													"&", 
+													"2", 
+													"&", 
+													"3",
+													"&",
+													"4",
+													"&",
+													"1", 
+													"&", 
+													"2", 
+													"&", 
+													"3",
+													"&",
+													"4",
+													"&",
+													"1", 
+													"&", 
+													"2", 
+													"&", 
+													"3",
+													"&",
+													"4",
+													"&",
+													"1", 
+													"&", 
+													"2", 
+													"&", 
+													"3",
+													"&",
+													"4",
+													"&"
+];
+
+// Variable to toggle the visibility of the counting supports and beat buttons
+let showOuterRing = true;
+let showTopText = true;
+let showBeatButtons = true;
+
+// Define button properties
+const buttonWidth = 20;
+const buttonHeight = 20;
+const buttonGap = 10;
+
+// Add buttons for shifting beats
+const shiftButtonWidth = 20;
+const shiftButtonHeight = 20;
+const shiftButtonGap = 10;
+
+// Declare a variable to store an image
+let img;
+
+ function preload() {
+  // Load the default image in the preload function
+  img = loadImage('default-1.png');
+}
+
+// Define timer variables
+let startTime;
+let timerTextSize;
+let timerTextAlignment;
+let duration = 180;
+
+
+
+
+//////// CUSTOM FUNCTIONS ////////
+
+//////// PLAYER SWITCHER BUTTONS ////////
+// Custom function to draw player theme switcher buttons
+function drawPlayerThemeButton(x, y, label, theme) {
+  let buttonWidth = 70;
+  let buttonHeight = 20;
+  let isMouseOver = mouseX >= x && mouseX <= x + buttonWidth && mouseY >= y && mouseY <= y + buttonHeight;
+
+  // Set the fill color based on mouse hover
+  let fillColor = isMouseOver ? color(200) : color(150);
+  fill(fillColor);
+  rect(x, y, buttonWidth, buttonHeight);
+
+  // Check for button click
+  if (isMouseOver && mouseIsPressed) {
+    currentPlayerTheme = theme;
+  }
+
+  // Draw button label
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text(label, x + buttonWidth / 2, y + buttonHeight / 2);
+}
+
+///// APPLY PRESETS FUNCTION /////
+function applyPreset(preset) {
+  img = loadImage(preset.imageFile); // Load the image
+
+  // Set transparency values
+  localNodeTransparency = preset.localNodeTransparency.slice();
+  n2Transparency = preset.n2Transparency.slice();
+  n3Transparency = preset.n3Transparency.slice();
+}
+
+// Custom function to draw the presets buttons
+function drawPresetButton(x, y, label, preset) {
+  let buttonWidth = 70;
+  let buttonHeight = 20;
+  let isMouseOver = mouseX >= x && mouseX <= x + buttonWidth && mouseY >= y && mouseY <= y + buttonHeight;
+
+  // Set the fill color based on mouse hover
+  let fillColor = isMouseOver ? color(80) : color(50);
+  fill(fillColor);
+  rect(x, y, buttonWidth, buttonHeight);
+
+  // Check for button click
+  if (isMouseOver && mouseIsPressed) {
+    currentPreset = preset;
+    applyPreset(currentPreset);
+  }
+		
+  // Draw button label
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text(label, x + buttonWidth / 2, y + buttonHeight / 2);
+}
+
+function keyPressed() {
+  if (keyCode === 32) {
+    if (!startTime) {
+      startTime = millis();
+      loop(); // Start the loop to update the timer
+    } else {
+      startTime = null;
+      redraw(); // Stop the loop when the timer is paused
+    }
+  }
+}
+
+function displayTimer() {
+  if (startTime) {
+    let elapsed = (millis() - startTime) / 1000;
+    let remaining = max(duration - elapsed, 0);
+    fill(255); // White text when timer is running
+		textSize(48);
+		textAlign(CENTER)
+    text(ceil(remaining, 2), width / 2, height / 50);
+    
+    if (remaining <= 0) {
+      // Timer has reached 0, trigger actions here
+      startTime = null;
+      redraw(); // Stop the loop
+      nextPreset();
+    }
+  } else {
+    fill(150); // Gray text when timer is not running
+		textSize(32);
+		textAlign(CENTER);
+    text(ceil(duration, 2), width / 2, height / 50);
+  }
+}
+
+function nextPreset() {
+  if (currentPreset === preset1) {
+    currentPreset = preset2;
+  } else if (currentPreset === preset2) {
+    currentPreset = preset3;
+  } else if (currentPreset === preset3) {
+    currentPreset = preset0;
+    startTime = null; // Stop the timer
+  }
+	
+	if (currentPreset === preset0) {
+		duration = 180; // Restart the timer
+  	applyPreset(currentPreset);
+	} else {
+		duration = 180; // Restart the timer
+  	applyPreset(currentPreset);
+		startTime = millis();
+	}
+}
+
+
+// Custom function to draw the text above the beat buttons
+function drawTopText(x, y, textValue) {
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  text(textValue, x, y);
+}
+
+// Custom function to draw the outer ring
+function drawOuterRing(x, y, radius) {
+  noFill();
+  stroke(40); // Adjust the color of the outer ring
+  ellipse(x, y, radius * 1.85, radius * 1.85);
+}
+
+// Custom function to draw text on the outer ring
+function drawOuterRingText(x, y, radius, index, angle, textValue) {
+  let textDistance = radius - 15; // Adjust the distance from the outer ring
+  let textX = x + cos(angle) * textDistance;
+  let textY = y + sin(angle) * textDistance;
+
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  text(textValue, textX, textY);
+}
+
+// Custom function to draw a dashed line
+function dashedLine(x1, y1, x2, y2, dashLength) {
+  let dx = x2 - x1;
+  let dy = y2 - y1;
+  let distance = sqrt(dx * dx + dy * dy);
+  let dashCount = distance / dashLength;
+  let dashX = dx / dashCount;
+  let dashY = dy / dashCount;
+  let draw = true;
+  for (let i = 0; i < dashCount; i++) {
+    if (draw) {
+      line(x1, y1, x1 + dashX, y1 + dashY);
+    }
+    x1 += dashX;
+    y1 += dashY;
+    draw = !draw;
+  }
+}
+
+// Custom function to draw the local node ring
+function drawLocalNode(x, y, radius) {
+  fill(color(currentPlayerTheme.localNodeColor));
+  noStroke();
+  ellipse(x, y, radius * 2, radius * 2);
+}
+
+// Custom function to draw the Node 2's rings
+function drawNode2(x, y, radius, scaleFactor) {
+  fill(color(currentPlayerTheme.n2Color));
+  noStroke();
+  ellipse(x, y, radius * 2 / scaleFactor, radius * 2 / scaleFactor);
+}
+
+// Custom function to draw the Node 3's rings
+function drawNode3(x, y, radius, scaleFactor) {
+  fill(color(currentPlayerTheme.n3Color));
+  noStroke();
+  ellipse(x, y, radius * 2 / scaleFactor, radius * 2 / scaleFactor);
+}
+
+// Custom function to draw the center of the circle
+function drawCenter(x, y, radius) {
+  let centerHoleColor = color(20);
+  fill(centerHoleColor.levels[0], centerHoleColor.levels[1], centerHoleColor.levels[2], 255); // 50% transparent
+  noStroke();
+  ellipse(x, y, radius * 2/3, radius * 2/3);
+}
+
+
+//////// CLICKABLE BEAT BUTTONS ////////
+// Custom function to draw a clickable beat button
+function drawButton(x, y, width, height, transparencyArray, index) {
+  // Check if the mouse is over the button
+  let isMouseOver = mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+
+  // Set the fill color based on transparency
+  let fillColor = color(240, 240, 240, transparencyArray[index] * 255);
+	stroke(255, 50);
+	noStroke();
+  fill(fillColor);
+
+  // Draw the button
+  rect(x, y, width, height);
+
+  // If the mouse is over the button and is pressed, toggle transparency
+  if (isMouseOver && mouseIsPressed) {
+    transparencyArray[index] = 1 - transparencyArray[index];
+		redraw();
+  }
+}
+
+
+// Custom function to draw a button to toggle Counting Supports
+function drawToggleVisibilityCountButton(x, y, label) {
+  let buttonWidth = 150;
+  let buttonHeight = 30;
+  let isMouseOver = mouseX >= x && mouseX <= x + buttonWidth && mouseY >= y && mouseY <= y + buttonHeight;
+
+		// Set the fill color based on mouse hover
+		let fillColor = isMouseOver ? color(80) : color(50);
+		fill(fillColor);
+		stroke(255, 50);
+		strokeWeight(1);
+		rect(x, y, buttonWidth, buttonHeight);
+
+		// Check for button click
+		if (isMouseOver && mouseIsPressed) {
+			showOuterRing = !showOuterRing; // Toggle visibility on click
+			showTopText = !showTopText; // Toggle visibility on click
+			showBeatButtons = !showBeatButtons; // Toggle visibility on click
+			redraw();
+		}
+
+  // Draw button label
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text(label, x + buttonWidth / 2, y + buttonHeight / 2);
+}
+
+// Custom function to toggle transparency on click
+function toggleTransparency() {
+  let buttonHeight = 20;
+  let rowIndex = floor(map(mouseY, height - buttonHeight * 3, height - buttonHeight, 0, 3));
+  let index = floor(map(mouseX, 0, width, 0, 32));
+
+  // Check if the left mouse button is pressed
+  if (mouseIsPressed && mouseButton === LEFT) {
+    if (index >= 0 && index < 32) {
+      if (rowIndex === 0) {
+        localNodeTransparency[index] = localNodeTransparency[index] === 1.0 ? 0.1 : 1.0;
+      } else if (rowIndex === 1) {
+        n2Transparency[index] = n2Transparency[index] === 1.0 ? 0.1 : 1.0;
+      } else if (rowIndex === 2) {
+        n3Transparency[index] = n3Transparency[index] === 1.0 ? 0.1 : 1.0;
+      }
+    }
+  }
+}
+
+
+// Custom function to draw the actual beat rectangles in the circle
+function drawBeats(centerX, centerY, circleRadius, numBeats, drawBeatFunction, transparencyArray, outerRingRadius) {
+  for (let i = 0; i < numBeats; i++) {
+    let rectWidth = 120;
+    drawBeatFunction(centerX, centerY, outerRingRadius, i, transparencyArray[i], rectWidth);
+  }
+}
+
+
+// Custom function to position and color the local node's beat rectangles
+function drawLocalBeats(centerX, centerY, circleRadius, index, transparency, rectWidth) {
+  let startingAngle = -HALF_PI; // Start at the top of the circle
+  let angleIncrement = TWO_PI / 32; // Evenly distribute rectangles around the circle
+  let angle = startingAngle + index * angleIncrement; // Calculate angle based on the number of rectangles
+  let x = centerX + cos(angle) * circleRadius;
+  let y = centerY + sin(angle) * circleRadius;
+  let rectHeight = 20 //set the height of the rectangles
+  let rectColor = color(currentPlayerTheme.localBeat); // Set the color for the rectangles
+
+  // Set rectangle color and transparency
+  rectColor.setAlpha(transparency * 255);
+
+  push(); // Save the current transformation matrix
+  translate(x, y); // Move the origin to the rectangle's position
+  rotate(angle + PI); // Rotate the rectangle to align with the lines
+
+  // Set rectangle color and transparency
+  fill(rectColor);
+  stroke(rectColor);
+  rectMode(CORNER); // Set the rectangle mode to center
+  rect(0, (0 - rectHeight / 2), rectWidth, rectHeight); // Draw the rectangle aligned over the center of the line
+  pop(); // Restore the original transformation matrix
+}
+
+
+// Custom function to position and color N2's beat rectangles
+function drawN2Beats(centerX, centerY, circleRadius, index, transparency, rectWidth) {
+  let startingAngle = -HALF_PI; // Start at the top of the circle
+  let angleIncrement = TWO_PI / 32; // Evenly distribute rectangles around the circle
+  let angle = startingAngle + index * angleIncrement; // Calculate angle based on the number of rectangles
+  let x = centerX + cos(angle) * circleRadius;
+  let y = centerY + sin(angle) * circleRadius;
+  let rectHeight = 20
+  let rectColor = color(currentPlayerTheme.n2Beat); // Set the color for the rectangles
+
+  // Set rectangle color and transparency
+  rectColor.setAlpha(transparency * 255);
+
+  push(); // Save the current transformation matrix
+  translate(x, y); // Move the origin to the rectangle's position
+  rotate(angle + PI); // Rotate the rectangle to align with the lines
+
+  // Set rectangle color and transparency
+  fill(rectColor);
+  stroke(rectColor);
+  rectMode(CORNER); // Set the rectangle mode to center
+  rect(0, (0-(rectHeight/2)), rectWidth, rectHeight); // Draw the rectangle aligned over the center of the line
+  pop(); // Restore the original transformation matrix
+}
+
+
+// Custom function to position and color N3's beat rectangles
+function drawN3Beats(centerX, centerY, circleRadius, index, transparency, rectWidth) {
+  let startingAngle = -HALF_PI; // Start at the top of the circle
+  let angleIncrement = TWO_PI / 32; // Evenly distribute rectangles around the circle
+  let angle = startingAngle + index * angleIncrement; // Calculate angle based on the number of rectangles
+  let x = centerX + cos(angle) * circleRadius;
+  let y = centerY + sin(angle) * circleRadius;
+  let rectHeight = 20
+  let rectColor = color(currentPlayerTheme.n3Beat); // Set the color for the rectangles
+
+  // Set rectangle color and transparency
+  rectColor.setAlpha(transparency * 255);
+
+  push(); // Save the current transformation matrix
+  translate(x, y); // Move the origin to the rectangle's position
+  rotate(angle + PI); // Rotate the rectangle to align with the lines
+
+  // Set rectangle color and transparency
+  fill(rectColor);
+  stroke(rectColor);
+  rectMode(CORNER); // Set the rectangle mode to center
+  rect(0, (0-(rectHeight/2)), rectWidth, rectHeight); // Draw the rectangle aligned over the center of the line
+  pop(); // Restore the original transformation matrix
+}
+
+
+// Custom function to draw buttons for shifting the beats
+function drawShiftButton(x, y, label, transparencyArray, isForward) {
+  let isMouseOver = mouseX >= x && mouseX <= x + shiftButtonWidth && mouseY >= y && mouseY <= y + shiftButtonHeight;
+
+  // Set the fill color based on mouse hover
+  let fillColor = isMouseOver ? color(80) : color(50);
+  fill(fillColor);
+  rect(x, y, shiftButtonWidth, shiftButtonHeight);
+
+  // Check for button click
+  if (isMouseOver && mouseIsPressed) {
+    shiftBeats(transparencyArray, isForward);
+  }
+
+  // Draw button label
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text(label, x + shiftButtonWidth / 2, y + shiftButtonHeight / 2);
+}
+
+// Custom function to shift beats forward or backward
+function shiftBeats(transparencyArray, isForward) {
+  if (isForward) {
+    // Shift beats to the right
+    transparencyArray.unshift(transparencyArray.pop());
+  } else {
+    // Shift beats to the left
+    transparencyArray.push(transparencyArray.shift());
+  }
+}
+
+
+
+
+//////// SETUP FUNCTION ////////
+function setup() {
+  createCanvas(1080, 1080);
+  background(20); // Set background color to black
+  frameRate(); // Adjust the frame rate as needed
+  currentPreset = preset0; // Set initial preset
+  applyPreset(currentPreset);
+	timerTextSize = 50;
+	timerTextAlignment = CENTER;
+}
+
+
+
+
+//////// DRAW FUNCTION ////////
+function draw() {
+  background(20); // Refresh the background in each frame
+  let centerX = width / 2;
+  let centerY = height / 2;
+  let circleRadius = 360;
+	let outerRingRadius = circleRadius * 1.1; // Adjust this factor based on your preference
+  let lineColor = color(200, 80); // Light gray color
+	textSize(12);
+	
+	// Draw the "Counting Support" button
+  drawToggleVisibilityCountButton(width - 240, 10, "Counting Support");
+  
+	
+///// MOVING PRESET CHOICE BUTTONS AND COMMENTING OUT PLAYER THEME BUTTONS //////
+	
+  drawPresetButton(width - 80, 10, "Phrase 1", preset1);
+  drawPresetButton(width - 80, 40, "Phrase 2", preset2);
+  drawPresetButton(width - 80, 70, "Phrase 3", preset3);
+	drawPresetButton(width - 80, 100, "Default", preset0);
+
+	// Add buttons to switch player themes
+	// drawPlayerThemeButton(width - 80, 10, "Player 1", player1Theme);
+	// drawPlayerThemeButton(width - 160, 10, "Player 2", player2Theme);
+	// drawPlayerThemeButton(width - 240, 10, "Player 3", player3Theme);
+
+  
+	// Add buttons for shifting/rotating rhythm necklaces
+	if (showBeatButtons) {
+		// Add buttons for shifting Local Node beats
+		drawShiftButton(width - 80, height - 60, "+1", localNodeTransparency, true);
+		drawShiftButton(width - 60, height - 60, "-1", localNodeTransparency, false);
+
+		// Add buttons for shifting Node 2 beats
+		drawShiftButton(width - 80, height - 40, "+1", n2Transparency, true);
+		drawShiftButton(width - 60, height - 40, "-1", n2Transparency, false);
+
+		// Add buttons for shifting Node 3 beats
+		drawShiftButton(width - 80, height - 20, "+1", n3Transparency, true);
+		drawShiftButton(width - 60, height - 20, "-1", n3Transparency, false);
+	}
+	
+  // Display the image
+  image(img, 10, 10, 480, 120);
+
+  // Draw buttons for local node transparency
+	if (showBeatButtons) {
+  for (let i = 0; i < 32; i++) {
+    let x = i * (buttonWidth + buttonGap);
+    let y = height - buttonHeight * 3; // Adjust the row position
+    drawButton(x, y, buttonWidth, buttonHeight, localNodeTransparency, i);
+  	}
+	}
+
+  // Draw buttons for Node 2 transparency
+	if (showBeatButtons) {
+  for (let i = 0; i < 32; i++) {
+    let x = i * (buttonWidth + buttonGap);
+    let y = height - buttonHeight * 2; // Adjust the row position
+    drawButton(x, y, buttonWidth, buttonHeight, n2Transparency, i);
+  	}
+	}
+
+  // Draw buttons for Node 3 transparency
+	if (showBeatButtons) {
+  	for (let i = 0; i < 32; i++) {
+   	 let x = i * (buttonWidth + buttonGap);
+   	 let y = height - buttonHeight; // Adjust the row position
+    	drawButton(x, y, buttonWidth, buttonHeight, n3Transparency, i);
+  	}
+	}
+  
+	// Add the Local node and it's beats
+	drawLocalNode(centerX, centerY, circleRadius);
+	drawBeats(centerX, centerY, circleRadius, 32, drawLocalBeats, localNodeTransparency, circleRadius);
+
+	// Add Node 2 and it's beats
+	drawNode2(centerX, centerY, circleRadius, 1.5);
+	drawBeats(centerX, centerY, circleRadius, 32, drawN2Beats, n2Transparency, circleRadius * 0.666);
+
+	// Add Node 3 and it's beats
+	drawNode3(centerX, centerY, circleRadius, 2);
+	drawBeats(centerX, centerY, circleRadius, 32, drawN3Beats, n3Transparency, circleRadius * 0.5);
+
+  // Add center hole
+  drawCenter(centerX, centerY, circleRadius);
+  
+  // Draw the whole circle
+  noFill();
+  stroke(lineColor);
+  ellipse(centerX, centerY, circleRadius * 2, circleRadius * 2);
+
+  // Draw the lines and rectangles
+  for (let i = 0; i < 32; i++) {
+    let angle = map(i, 0, 32, 0, TWO_PI); // Calculate angle based on the number of lines
+    let x = centerX + cos(angle) * circleRadius;
+    let y = centerY + sin(angle) * circleRadius;
+		
+    // Make every other line dashed
+    if (i % 2 === 0) {
+      line(centerX, centerY, x, y);
+    } else {
+      dashedLine(centerX, centerY, x, y, 8); // Call the dashedLine function
+    }
+	}
+	
+	// Draw the outer ring and its text if the visibility is toggled on
+  if (showOuterRing) {
+    for (let i = 0; i < 32; i++) {
+      let angle = map(i, 0, 32, 0, TWO_PI);
+      drawOuterRing(centerX, centerY, outerRingRadius);
+      drawOuterRingText(centerX, centerY, outerRingRadius, i, angle, outerRingTextArray[i % outerRingTextArray.length]);
+    }
+  }
+	
+	// Draw the top text if the visibility is toggled on
+  if (showTopText) {
+    for (let i = 0; i < 32; i++) {
+    let x = (i + 0.35) * (buttonWidth + buttonGap);
+    let y = height - buttonHeight * 3.5; // Adjust the row position
+      drawTopText(x, y, outerRingTextArray[i % outerRingTextArray.length]);
+    }
+  }
+	
+	// Display timer
+  displayTimer();
+	
+}
